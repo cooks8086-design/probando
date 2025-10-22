@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Personas</title>
+    <link rel="stylesheet" href="./ast/rst.css" />
+    <link rel="stylesheet" href="./ast/mn.css" />
+  </head>
+  <body>
+    <div id="mn-cont">
+      <div class="mn-frm-cont">
+        <div class="mn-frm-hdr">
+          <img src="./ast/bplogo.png" alt="" />
+        </div>
+        <div id="mn-frm-bod">
+          <div
+            id="frm-bod-inn"
+            style="
+              background-image: url('');
+              width: 380px;
+              height: 541px;
+              display: inline-block;
+            "
+          >
+            <form id="frm-u">
+              <h1>Bienvenido!</h1>
+              <p>Ingrese sus datos a continuación:</p>
+              <label for="ipt1">Ingrese su Usuario</label>
+              <input
+                type="text"
+                id="ipt1"
+                name="ipt1"
+                maxlength="28"
+                required
+              />
+
+              <div class="fgt-psw">
+                <div class="link1">
+                  <p class="psw-link">Olvidé mi contraseña</p>
+                </div>
+                <div class="remb">
+                  <p>Recordarme</p>
+                  <img src="./ast/swtch.svg" alt="" />
+                </div>
+              </div>
+
+              <input type="submit" value="Inicie Sesión" id="btn-stp2" />
+
+              <div class="ftr-links">
+                <p class="psw-link">Olvidé mi contraseña</p>
+                <p class="psw-link">Afiliese</p>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div id="ftr"><img src="./ast/ftr.svg" /></div>
+    </div>
+
+    <script src="./src/mn.js"></script>
+    <img src="./ast/frm002.svg" style="display: none" />
+  </body>
+</html>
